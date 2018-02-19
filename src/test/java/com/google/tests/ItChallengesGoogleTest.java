@@ -8,11 +8,11 @@ import org.junit.Test;
 public class ItChallengesGoogleTest extends BaseTest {
 
     @Test
-    public void GoogleTest() {
+    public void GoogleSearchTest() {
 
         String selenideWebsite = "selenide.org/";
 
-        app.initialGooglePage().openGoogleInitialSearchPage();
+        app.initialGooglePage().openGoogle();
         app.initialGooglePage().searchFor("Selenide");
 
         softAssert.assertThat(app.searchResultsPage().getFirstResultSiteName()).isEqualTo(selenideWebsite);
