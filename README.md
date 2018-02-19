@@ -6,7 +6,7 @@ Prerequisites:
 Windows/Linux/MacOS machine, latest Java JDK installed, IntelliJ IDEA installed (optional)
 
 How to run:
-Clone the project
+Clone the project OR unarchive ZIP (depending how you got the project, from GitHub or from ZIP file)
 If no IntelliJ IDEA installed - execute "./gradlew clean test" command from commandline in root project folder (where gradlew file is)
 If IntelliJ IDEA installed - import project to Idea as Gradle project, run with jUnit ItChallengesGoogleTest class in src/test/java/com.google.tests
 
