@@ -18,4 +18,9 @@ public class BasePage {
 
         PageFactory.initElements(driver, this);
     }
+
+    public void openGoogleInitialSearchPage() {
+        driver.get(googleBaseURL);
+    }
+
 }

@@ -16,7 +16,12 @@ public class InitialGooglePage extends BasePage {
     @FindBy(css = "#lst-ib")
     private WebElement searchField;
 
-    @FindBy(css = "#btnK")
+    @FindBy(name = "btnK")
     private WebElement searchButton;
+
+    public void searchFor(String searchRequest) {
+        searchField.sendKeys(searchRequest);
+        searchButton.click();
+    }
 
 }
