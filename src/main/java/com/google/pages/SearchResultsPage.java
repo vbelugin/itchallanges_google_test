@@ -13,7 +13,7 @@ public class SearchResultsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = "._Rm")
+    @FindBy(css = ".iUh30")
     private WebElement firstResultDescription;
 
     @FindBy(css = "#hdtb-msb-vis > div:nth-child(1) > a")
