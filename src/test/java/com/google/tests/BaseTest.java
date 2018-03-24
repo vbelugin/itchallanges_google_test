@@ -2,12 +2,14 @@ package com.google.tests;
 
 import com.google.utils.PageManager;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,17 +19,24 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     private WebDriver driver;
-    protected PageManager app;
-    protected SoftAssertions softAssert;
-
-    @BeforeClass
-    public static void getDriver() {
-        ChromeDriverManager.getInstance().setup();
-    }
+    PageManager app;
+    SoftAssertions softAssert;
+    private String browserType = System.getProperty("browser");
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        // If statement was implemented here to check browser type specified with parameter
+        try {
+            if(browserType.equals("chrome")) {
+                ChromeDriverManager.getInstance().setup();
+                driver = new ChromeDriver();
+            } else if (browserType.equals("firefox")) {
+                FirefoxDriverManager.getInstance().setup();
+                driver = new FirefoxDriver();
+            }
+        } catch (NullPointerException e) {
+            throw new NullPointerException("You have to specify correct browser type parameter for running tests, like '-Dbrowser=chrome' or '-Dbrowser=firefox'");
+        }
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         app = new PageManager(driver);
         softAssert = new SoftAssertions();

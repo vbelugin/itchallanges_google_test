@@ -26,3 +26,7 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.9.0'
 }
 
+test {
+    systemProperty 'browser', System.getProperty('browser')
+}
+
