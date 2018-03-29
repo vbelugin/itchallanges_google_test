@@ -26,16 +26,15 @@ public class BaseTest {
     @Before
     public void setUp() {
         // If statement was implemented here to check browser type specified with parameter
-        try {
-            if(browserType.equals("chrome")) {
+        switch (browserType) {
+            case "chrome":
                 ChromeDriverManager.getInstance().setup();
-                driver = new ChromeDriver();
-            } else if (browserType.equals("firefox")) {
+                driver = new ChromeDriver(); break;
+            case "firefox":
                 FirefoxDriverManager.getInstance().setup();
-                driver = new FirefoxDriver();
-            }
-        } catch (NullPointerException e) {
-            throw new NullPointerException("You have to specify correct browser type parameter for running tests, like '-Dbrowser=chrome' or '-Dbrowser=firefox'");
+                driver = new FirefoxDriver(); break;
+            default:
+                throw new NullPointerException("You have to specify correct browser type parameter for running tests, like '-Dbrowser=chrome' or '-Dbrowser=firefox'");
         }
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         app = new PageManager(driver);
